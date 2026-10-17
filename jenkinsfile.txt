@@ -2,15 +2,19 @@ pipeline {
     agent any
 
     stages {
+
         stage('Build') {
             steps {
-                sh './build.sh'
+                sh 'chmod +x app.sh'
+                sh './app.sh'
             }
         }
 
-        stage('Archive') {
+        stage('Test') {
             steps {
-                archiveArtifacts artifacts: 'build/*'
+                sh 'chmod +x test.sh'
+                sh './test.sh'
             }
-        }*    }
+        }
+    }
 }
